@@ -18,6 +18,10 @@ def transcribe_audio(audio_path):
     Run Whisper on the voiceover to get a timed SRT file.
     Returns path to the SRT file.
     """
+    if not shutil.which("whisper"):
+        print("[Captions] Whisper is not installed - skipping auto captions.")
+        return None
+
     print(f"[Captions] Transcribing audio with Whisper ({WHISPER_MODEL})...")
     
     # output goes same place as audio file

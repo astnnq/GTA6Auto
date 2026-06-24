@@ -4,8 +4,9 @@
 
 set -e
 
-PROJECT_DIR="${HOME}/gta6-pipeline"
+PROJECT_DIR="${PROJECT_DIR:-${HOME}/gta6-pipeline}"
 VENV_DIR="${PROJECT_DIR}/.venv"
+INSTALL_WHISPER="${INSTALL_WHISPER:-false}"
 
 echo ""
 echo "================================================"
@@ -20,17 +21,21 @@ sudo apt install -y ffmpeg python3-pip python3-venv git curl
 echo "[2/6] Creating project folders..."
 mkdir -p "${PROJECT_DIR}"
 cd "${PROJECT_DIR}"
-mkdir -p clips scripts audio output thumbnails queue logs data review
+mkdir -p clips scripts audio output thumbnails queue logs data review tmp pip-cache
 
 echo "[3/6] Creating Python virtual environment..."
+export TMPDIR="${PROJECT_DIR}/tmp"
+export PIP_CACHE_DIR="${PROJECT_DIR}/pip-cache"
 python3 -m venv "${VENV_DIR}"
 "${VENV_DIR}/bin/python" -m pip install --upgrade pip wheel
 
 echo "[4/6] Installing Python packages..."
-if [ -f requirements.txt ]; then
-  "${VENV_DIR}/bin/pip" install -r requirements.txt
+if [ "$INSTALL_WHISPER" = "true" ] && [ -f requirements.txt ]; then
+  "${VENV_DIR}/bin/pip" install --cache-dir "${PIP_CACHE_DIR}" -r requirements.txt
+elif [ -f requirements-lite.txt ]; then
+  "${VENV_DIR}/bin/pip" install --cache-dir "${PIP_CACHE_DIR}" -r requirements-lite.txt
 else
-  "${VENV_DIR}/bin/pip" install edge-tts Pillow requests google-api-python-client google-auth-oauthlib google-auth-httplib2 openai-whisper yt-dlp
+  "${VENV_DIR}/bin/pip" install --cache-dir "${PIP_CACHE_DIR}" edge-tts Pillow requests google-api-python-client google-auth-oauthlib google-auth-httplib2 yt-dlp
 fi
 
 echo "[5/6] Installing yt-dlp command..."
@@ -53,3 +58,4 @@ echo "  3. Test with: ${VENV_DIR}/bin/python run_pipeline.py dry"
 echo "  4. Check finished drafts in: ${PROJECT_DIR}/review"
 echo ""
 echo "Uploads are disabled by default. Set GTA6_AUTO_UPLOAD=true only after testing."
+echo "Whisper captions are skipped by default to save space. Re-run with INSTALL_WHISPER=true if you have room."
