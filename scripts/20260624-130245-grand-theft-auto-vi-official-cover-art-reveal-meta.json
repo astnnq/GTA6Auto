@@ -1,0 +1,15 @@
+{
+  "channel": "GTA 6 Intel",
+  "topic": {
+    "id": "grand-theft-auto-vi-official-cover-art-reveal",
+    "title": "Grand Theft Auto VI: Official Cover Art Reveal",
+    "source": "youtube_rss",
+    "url": "https://www.youtube.com/shorts/INjHGpMRjRA",
+    "score": 50,
+    "risk": "low",
+    "collected_at": "2026-06-24T13:02:44"
+  },
+  "long_script": "C:\\Users\\austi\\OneDrive\\Documents\\gta6-pipeline\\gta6-pipeline\\scripts\\20260624-130245-grand-theft-auto-vi-official-cover-art-reveal-long.txt",
+  "short_script": "C:\\Users\\austi\\OneDrive\\Documents\\gta6-pipeline\\gta6-pipeline\\scripts\\20260624-130245-grand-theft-auto-vi-official-cover-art-reveal-short.txt",
+  "generated_at": "2026-06-24T13:02:45"
+}

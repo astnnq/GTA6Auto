@@ -1,0 +1,23 @@
+{
+  "runs": [
+    {
+      "timestamp": "2026-06-24 13:02:45.159537",
+      "topic": "Grand Theft Auto VI: Official Cover Art Reveal",
+      "status": "failed",
+      "youtube_long_id": null,
+      "youtube_short_id": null,
+      "error": "[WinError 2] The system cannot find the file specified"
+    },
+    {
+      "timestamp": "2026-06-24 13:03:47.800132",
+      "topic": "Grand Theft Auto VI: Official Cover Art Reveal",
+      "status": "failed",
+      "youtube_long_id": null,
+      "youtube_short_id": null,
+      "error": "Video assembly failed - no clips"
+    }
+  ],
+  "total_videos": 0,
+  "total_shorts": 0,
+  "errors": 2
+}
